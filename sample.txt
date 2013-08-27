@@ -1,0 +1,64 @@
+The Sample file
+Contains tests cases to test the correctness of the program. 
+
+Dongpu Jin
+2/23/2012
+
+Test Cases: 
+
+1. Start the server: 
+$ Java Bank 6666
+
+
+2. Start the client and inquiry account 100: 
+$ java ATM ec2-54-234-217-109.compute-1.amazonaws.com 6666 inquiry 100 
+> The current balance for account 100 is $1000
+
+
+3. Deposit $100 and inquiry the account: 
+$ java ATM ec2-54-234-217-109.compute-1.amazonaws.com 6666 deposit 100 100
+> Successfully deposit $100 to account 100
+
+$ java ATM ec2-54-234-217-109.compute-1.amazonaws.com 6666 inquiry 100
+> The current balance for account 100 is $1100
+
+As we can see, the balance for account 100 becomes $1100. 
+
+
+4. Try to widthdraw $2000 from account 100 and inquiry the account:
+$ java ATM ec2-54-234-217-109.compute-1.amazonaws.com 6666 widthdraw 100 2000
+> Balance not enough. Action canceled.
+
+$ java ATM ec2-54-234-217-109.compute-1.amazonaws.com 6666 inquiry 100
+> The current balance for account 100 is $1100
+
+As we can see, the action is the canceled and balance unchange. 
+
+
+5. Widthdraw $500 from account 100: 
+$ java ATM ec2-54-234-217-109.compute-1.amazonaws.com 6666 widthdraw 100 500
+> Successfully widthdraw $500 from account 100
+
+$ java ATM ec2-54-234-217-109.compute-1.amazonaws.com 6666 inquiry 100
+> The current balance for account 100 is $600
+
+As we can see, after withdraw $500, there are $600 left in the account. 
+
+
+6. Try to inquiry or widthdraw from a non-exist account: 
+$ java ATM ec2-54-234-217-109.compute-1.amazonaws.com 6666 inquiry 105
+> Account not found 
+
+$ java ATM ec2-54-234-217-109.compute-1.amazonaws.com 6666 widthdraw 105 2000
+> Account not found
+
+
+7. Try to deposit to a non-exist account: 
+$ java ATM ec2-54-234-217-109.compute-1.amazonaws.com 6666 deposit 105 500
+> Account not found. Account created.
+
+$ java ATM ec2-54-234-217-109.compute-1.amazonaws.com 6666 inquiry 105
+> The current balance for account 105 is $500
+
+As we can see, account 105 was not exist. After deposit operation, this 
+account is created and the $500 is successfully depositted into the account. 

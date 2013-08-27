@@ -1,0 +1,33 @@
+README file: 
+
+Dongpu Jin
+2/23/2013
+
+Submitted Files: 
+- ATM.java: The ATM client. Send user requests to the server via RPC. 
+- Bank.java: The Bank server. Process requests sent by the client. 
+- BankInterface.java: The interface of account management methods. 
+- Makefile: invokded by typing make. Compile the program. 
+- djin-PA1-Design.pdf: the design document. 
+- sample.txt: test cases. 
+- djin-server.pem, djin-client.pem: private keys. 
+
+Compiling environment: Amazon Linux AMI 2012.09.1 instances
+
+Security group setting: All TCP
+
+Environment setup: 
+$ sudo yum install java-devel
+$ sudo yum install make
+
+Clean up: 
+$ make clean
+
+Compile: 
+$ make
+
+Launch server: 
+$ java Bank 6666
+
+Launch client: 
+$ java ATM ec2-user@the_host_name 6666 inquiry 100
